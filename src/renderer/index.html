@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <title>Little Horses</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        overflow: hidden;
+        /* Whole window is draggable by default; interactive controls
+           (added in later phases) opt back out with -webkit-app-region: no-drag. */
+        -webkit-app-region: drag;
+        user-select: none;
+      }
+      #companion-root {
+        width: 100%;
+        height: 100%;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="companion-root"></div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

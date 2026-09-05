@@ -1,8 +1,14 @@
 import { resolve } from 'path'
 import { defineConfig } from 'electron-vite'
 
+const sharedAlias = {
+  '@shared': resolve(__dirname, 'src/shared'),
+  '@three': resolve(__dirname, 'src/three')
+}
+
 export default defineConfig({
   main: {
+    resolve: { alias: sharedAlias },
     build: {
       outDir: 'out/main',
       rollupOptions: {
@@ -11,6 +17,7 @@ export default defineConfig({
     }
   },
   preload: {
+    resolve: { alias: sharedAlias },
     build: {
       outDir: 'out/preload',
       rollupOptions: {
@@ -20,16 +27,11 @@ export default defineConfig({
   },
   renderer: {
     root: resolve(__dirname, 'src/renderer'),
+    resolve: { alias: sharedAlias },
     build: {
       outDir: 'out/renderer',
       rollupOptions: {
         input: resolve(__dirname, 'src/renderer/index.html')
-      }
-    },
-    resolve: {
-      alias: {
-        '@shared': resolve(__dirname, 'src/shared'),
-        '@three': resolve(__dirname, 'src/three')
       }
     }
   }
